@@ -1,0 +1,92 @@
+# ============================================
+# Flutter / Dart
+# ============================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# 覆盖率
+coverage/
+
+# 编译生成的 Dart 代码（如使用 build_runner）
+*.g.dart
+*.freezed.dart
+**/generated_plugin_registrant.*
+
+# ============================================
+# Android
+# ============================================
+android/.gradle/
+android/captures/
+android/local.properties
+android/key.properties
+android/**/gradle-wrapper.jar
+android/.cxx/
+android/.idea/
+android/*.iml
+android/app/*.iml
+android/app/release/
+*.jks
+*.keystore
+
+# ============================================
+# iOS / macOS
+# ============================================
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+macos/Pods/
+macos/Flutter/ephemeral/
+
+# ============================================
+# IDE
+# ============================================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+*.swp
+.DS_Store
+.metadata/
+
+# ============================================
+# 系统 / 临时
+# ============================================
+*.log
+*.tmp
+*.bak
+*.tmp.*
+Thumbs.db
+
+# ============================================
+# 混淆与符号化
+# ============================================
+app.*.symbols
+app.*.map.json
+symbols/
+
+# ============================================
+# 敏感信息（绝对不要上传）
+# ============================================
+keystore.properties
+.env
+.env.*
+
+# ============================================
+# 构建产物（用 GitHub Releases 单独发布）
+# ============================================
+*.apk
+*.aab
+*.ap_
+*.ipa
+*.dmg
+*.exe
+*.msi

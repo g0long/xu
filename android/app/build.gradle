@@ -1,0 +1,100 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+android {
+    namespace "com.example.todo"
+    compileSdk flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        applicationId "com.example.todo"
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        // 仅保留 arm64-v8a 原生库，大幅减少 APK 体积
+        ndk {
+            abiFilters "arm64-v8a"
+        }
+        // 仅保留中文资源，移除其他语言包
+        resConfigs "zh-rCN", "zh"
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            jniDebuggable false
+            // 禁用 PNG 压缩以减小体积
+            crunchPngs false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    // 移除未使用的资源与调试符号，进一步减小 APK
+    packagingOptions {
+        resources {
+            excludes += [
+                "/META-INF/{AL2.0,LGPL2.1}",
+                "/META-INF/*.kotlin_module",
+                "/META-INF/*.version",
+                "/META-INF/proguard/**",
+                "/META-INF/services/**",
+                "**/*.proto",
+                "DebugProbesKt.bin"
+            ]
+        }
+        jniLibs {
+            excludes += [
+                "**/lib/*/libflutter.so.debug",
+                "**/lib/*/libsatdispatch.so",
+                "**/lib/*/*_x86*.so"
+            ]
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {}

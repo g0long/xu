@@ -1,0 +1,46 @@
+name: xu
+description: 序 - 万物有序，从容生长
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+# 依赖说明：
+# - flutter_riverpod: 状态管理（轻量、无需 build_runner 的语法）
+# - hive / hive_flutter: 本地持久化（使用手写 TypeAdapter 避免 build_runner）
+# - flutter_slidable: QQ 风格的滑动操作列表项
+# - fl_chart: 统计页图表
+# - audioplayers: 专注倒计时结束的提示音
+# - intl: 日期格式化
+# - uuid: 生成任务/习惯唯一 id
+# - path_provider: 获取本地存储路径（Hive 需要）
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^2.4.9
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_slidable: ^3.0.1
+  path_provider: ^2.1.2
+  fl_chart: ^0.66.0
+  audioplayers: ^5.2.1
+  http: ^1.2.0
+  url_launcher: ^6.3.0
+  package_info_plus: ^5.0.1
+  intl: 0.18.1
+  uuid: ^4.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/sounds/
+    - assets/images/
