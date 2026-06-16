@@ -379,8 +379,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     try {
       final pkg = await PackageInfo.fromPlatform();
       final info = await UpdateService.checkForUpdate(
-        owner: settings.githubOwner,
-        repo: settings.githubRepo,
+        owner: 'g0long',
+        repo: 'xu',
         currentVersion: pkg.version,
       );
       ref.read(appSettingsProvider.notifier).markUpdateChecked(DateTime.now());

@@ -53,13 +53,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> _checkUpdateOnStartup() async {
-    final settings = ref.read(appSettingsProvider);
-    if (settings.githubOwner.isEmpty || settings.githubRepo.isEmpty) return;
     try {
       final pkg = await PackageInfo.fromPlatform();
       final info = await UpdateService.checkForUpdate(
-        owner: settings.githubOwner,
-        repo: settings.githubRepo,
+        owner: 'g0long',
+        repo: 'xu',
         currentVersion: pkg.version,
       );
       if (!mounted) return;
